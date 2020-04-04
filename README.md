@@ -1,2 +1,3 @@
-# hlf-multi-node-setup-docker-swarm
-Hyperledger Fabric network setup on multiple nodes using Docker Swarm - Network with 3 Organizations
+# hlf-docker-swarm
+
+[![Try on Boxware](https://cdn.boxware.io/try/button.svg)](https://boxware.io/dashboard?try=https://github.com/skcript/hlf-docker-swarm) 
