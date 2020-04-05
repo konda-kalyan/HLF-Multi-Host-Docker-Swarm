@@ -16,7 +16,7 @@ services:
         max_attempts: 3
       placement:
         constraints:
-          - node.hostname == 172.31.18.197
+          - node.hostname == 3.17.148.214
           - engine.labels.aws.region == us-east-2
         preferences:
           - spread: node.labels.aws.zone
@@ -48,7 +48,7 @@ services:
         max_attempts: 3
       placement:
         constraints:
-          - node.hostname == 172.31.18.197
+          - node.hostname == 3.17.148.214
           - engine.labels.aws.region == us-east-2
         preferences:
           - spread: node.labels.aws.zone
@@ -80,7 +80,7 @@ services:
         max_attempts: 3
       placement:
         constraints:
-          - node.hostname == 172.31.18.197
+          - node.hostname == 3.17.148.214
           - engine.labels.aws.region == us-east-2
         preferences:
           - spread: node.labels.aws.zone

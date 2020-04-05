@@ -21,22 +21,22 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == 172.31.18.197
+                    - node.hostname == 3.17.148.214
                     - engine.labels.aws.region == us-east-2
                 preferences:
                     -  spread: node.labels.aws.zone
         image: hyperledger/fabric-ca:amd64-1.4.4
         hostname: ca.org1.example.com
         environment:
-            - FABRIC_CA_HOME=/etc/hyperledgerfabric-ca:1.4.4
+            - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
             - FABRIC_CA_SERVER_CA_NAME=ca_org1
-            - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledgerfabric-ca:1.4.4
-            - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledgerfabric-ca:1.4.4
+            - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org1.example.com-cert.pem
+            - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/8d3f33dca0d109c0dbbe58c07048a5a19d82198d83858f8acc1954ea5877e5cc_sk
         ports:
             - "7054:7054"   
         command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
         volumes:
-            - /var/mynetwork/certs/crypto-config/peerOrganizations/org1.example.com/ca/:/etc/hyperledgerfabric-ca:1.4.4
+            - /var/mynetwork/certs/crypto-config/peerOrganizations/org1.example.com/ca/:/etc/hyperledger/fabric-ca-server-config
 
     cli:
         deploy:
@@ -47,7 +47,7 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == 172.31.18.197
+                    - node.hostname == 3.17.148.214
                     - engine.labels.aws.region == us-east-2
                 preferences:
                     -  spread: node.labels.aws.zone
@@ -90,7 +90,7 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == 172.31.18.197
+                    - node.hostname == 3.17.148.214
                     - engine.labels.aws.region == us-east-2
                 preferences:
                     -  spread: node.labels.aws.zone
@@ -108,7 +108,7 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == 172.31.18.197
+                    - node.hostname == 3.17.148.214
                     - engine.labels.aws.region == us-east-2
                 preferences:
                     -  spread: node.labels.aws.zone

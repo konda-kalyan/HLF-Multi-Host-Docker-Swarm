@@ -5,13 +5,13 @@
 #
 # This script get all fabric binaries from github repo
 
-set -ev
+#set -ev
 
 ENV_LOCATION=$PWD/.env
 echo $ENV_LOCATION
 source $ENV_LOCATION
 
-#rm $PWD/bin/*	# remove old binaries
+rm -rf $PWD/bin/*	# remove old binaries
 
 BINARY_FILE=hyperledger-fabric-linux-${FABRIC_VERSION}.tar.gz
 echo "Binary file: $BINARY_FILE"
@@ -30,9 +30,7 @@ pullBinaries() {
 	fi
 
 	echo "===> Downloading version ${FABRIC_CA_VERSION} platform specific fabric-ca-client binary"
-	set -x
 	download "${CA_BINARY_FILE}" "https://github.com/hyperledger/fabric-ca/releases/download/v${FABRIC_JUST_VERSION}/${CA_BINARY_FILE}"
-	set +x
 	if [ $? -eq 22 ]; then
 		echo
 		echo "------> ${FABRIC_CA_VERSION} fabric-ca-client binary is not available to download  (Available from 1.1.0-rc1) <----"
@@ -46,20 +44,17 @@ download() {
     local BINARY_FILE=$1
     local URL=$2
     echo "===> Downloading: " "${URL}"
-    set -x
-    curl -L --retry 5 --retry-delay 3 "${URL}" | tar xz || rc=$?
-    set +x
-    if [ -n "$rc" ]; then
-        echo "==> There was an error downloading the binary file."
-        return 22
-    else
-        echo "==> Done."
-    fi
+    #curl -L --retry 5 --retry-delay 3 "${URL}" 
+    curl -L --retry 5 --retry-delay 3 "${URL}" | tar xz
+    #curl -L --retry 5 --retry-delay 3 "${URL}" | tar xz || rc=$?
+
+    #if [ -n "$?" ]; then
+        #echo "==> There was an error downloading the binary file."
+        #return 22
+    #else
+        #echo "==> Done."
+    #fi
 }
 
-cd $PWD/bin
-
 pullBinaries
-
-cd -
 

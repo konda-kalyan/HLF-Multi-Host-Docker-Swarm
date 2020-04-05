@@ -21,14 +21,17 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == intel-sawtooth
+                    - node.hostname == 18.219.26.79
+                    - engine.labels.aws.region == us-east-2
+                preferences:
+                    -  spread: node.labels.aws.zone
         image: hyperledger/fabric-ca:amd64-1.4.4
         hostname: ca.org3.example.com
         environment:
             - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
             - FABRIC_CA_SERVER_CA_NAME=ca_org3
             - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org3.example.com-cert.pem
-            - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/00bcc2ab8317b25a4494587efac71720eb2671ccbebc0123fff542ee6835c6a1_sk
+            - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/8d27a6d1ecc51a2bb5c092655d8ff04eb9ebc90656e3f2dbdee8a8de8862933b_sk
         ports:
             - 9054:7054   
         command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
@@ -44,8 +47,11 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == intel-sawtooth
-        image: hyperledger/fabric-couchdb:amd64-1.4.4
+                    - node.hostname == 18.219.26.79
+                    - engine.labels.aws.region == us-east-2
+                preferences:
+                    -  spread: node.labels.aws.zone
+        image: hyperledger/fabric-couchdb:amd64-0.4.18
         hostname: couchdb0_org3
         networks:
            - skcript
@@ -59,8 +65,11 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == intel-sawtooth
-        image: hyperledger/fabric-couchdb:amd64-1.4.4
+                    - node.hostname == 18.219.26.79
+                    - engine.labels.aws.region == us-east-2
+                preferences:
+                    -  spread: node.labels.aws.zone
+        image: hyperledger/fabric-couchdb:amd64-0.4.18
         hostname: couchdb1_org3
         networks:
            - skcript
