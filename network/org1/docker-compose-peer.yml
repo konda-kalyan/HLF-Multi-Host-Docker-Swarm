@@ -17,7 +17,10 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == intel-sawtooth
+                    - node.hostname == 172.31.18.197
+                    - engine.labels.aws.region == us-east-2
+                preferences:
+                    -  spread: node.labels.aws.zone
         image: hyperledger/fabric-peer:amd64-1.4.4
         hostname: peer0.org1.example.com
         environment:
@@ -74,7 +77,10 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == intel-sawtooth
+                    - node.hostname == 172.31.18.197
+                    - engine.labels.aws.region == us-east-2
+                preferences:
+                    -  spread: node.labels.aws.zone
         image: hyperledger/fabric-peer:amd64-1.4.4
         hostname: peer1.org1.example.com
         environment:

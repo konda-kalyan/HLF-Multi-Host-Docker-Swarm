@@ -17,7 +17,10 @@ services:
         max_attempts: 3
       placement:
         constraints:
-          - node.hostname == intel-sawtooth
+          - node.hostname == 172.31.22.238
+          - engine.labels.aws.region == us-east-2
+        preferences:
+          - spread: node.labels.aws.zone
     image: hyperledger/fabric-orderer:amd64-1.4.4
     working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderer
     command: orderer
@@ -45,7 +48,7 @@ services:
       - ORDERER_TLS_CLIENTKEY_FILE=/var/hyperledger/users/Admin@example.com/tls/client.key
       - ORDERER_HOST=orderer1.example.com
       - CONFIGTX_ORDERER_ORDERERTYPE=kafka
-      - CONFIGTX_ORDERER_KAFKA_BROKERS=[kafka0:9092,kafka1:9092,kafka2:9092,kafka3:9092]
+      - CONFIGTX_ORDERER_KAFKA_BROKERS=[kafka0:9092,kafka1:9092,kafka2:9092]
       - ORDERER_KAFKA_RETRY_SHORTINTERVAL=1s
       - ORDERER_KAFKA_RETRY_SHORTTOTAL=30s
       - ORDERER_KAFKA_VERBOSE=true

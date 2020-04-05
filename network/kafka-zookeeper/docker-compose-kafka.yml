@@ -16,9 +16,12 @@ services:
         max_attempts: 3
       placement:
         constraints:
-          - node.hostname == intel-sawtooth
+          - node.hostname == 172.31.18.197
+          - engine.labels.aws.region == us-east-2
+        preferences:
+          - spread: node.labels.aws.zone
     hostname: kafka0
-    image: hyperledger/fabric-kafka
+    image: hyperledger/fabric-kafka:amd64-0.4.18
     # Give network alias
     networks:
       skcript:
@@ -45,9 +48,12 @@ services:
         max_attempts: 3
       placement:
         constraints:
-          - node.hostname == intel-sawtooth
+          - node.hostname == 172.31.18.197
+          - engine.labels.aws.region == us-east-2
+        preferences:
+          - spread: node.labels.aws.zone
     hostname: kafka1
-    image: hyperledger/fabric-kafka
+    image: hyperledger/fabric-kafka:amd64-0.4.18
     # Give network alias
     networks:
       skcript:
@@ -74,9 +80,12 @@ services:
         max_attempts: 3
       placement:
         constraints:
-          - node.hostname == intel-sawtooth
+          - node.hostname == 172.31.18.197
+          - engine.labels.aws.region == us-east-2
+        preferences:
+          - spread: node.labels.aws.zone
     hostname: kafka2
-    image: hyperledger/fabric-kafka
+    image: hyperledger/fabric-kafka:amd64-0.4.18
     # Give network alias
     networks:
       skcript:
@@ -88,35 +97,6 @@ services:
       - KAFKA_UNCLEAN_LEADER_ELECTION_ENABLE=false
       - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=skcript
       - KAFKA_BROKER_ID=2
-      - KAFKA_DEFAULT_REPLICATION_FACTOR=3
-      - KAFKA.MIN_INSYNC_REPLICAS=2
-      - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
-      - KAFKA_ZOOKEEPER_CONNECTION_TIMEOUT_MS=36000
-      - KAFKA_ZOOKEEPER_SESSION_TIMEOUT_MS=36000
-
-  kafka3:
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-        delay: 5s
-        max_attempts: 3
-      placement:
-        constraints:
-          - node.hostname == intel-sawtooth
-    hostname: kafka3
-    image: hyperledger/fabric-kafka
-    # Give network alias
-    networks:
-      skcript:
-        aliases:
-          - kafka3
-    environment:
-      - KAFKA_MESSAGE_MAX_BYTES=103809024 # 99 * 1024 * 1024 B
-      - KAFKA_REPLICA_FETCH_MAX_BYTES=103809024 # 99 * 1024 * 1024 B
-      - KAFKA_UNCLEAN_LEADER_ELECTION_ENABLE=false
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=skcript
-      - KAFKA_BROKER_ID=3
       - KAFKA_DEFAULT_REPLICATION_FACTOR=3
       - KAFKA.MIN_INSYNC_REPLICAS=2
       - KAFKA_ZOOKEEPER_CONNECT=zookeeper0:2181,zookeeper1:2181,zookeeper2:2181
