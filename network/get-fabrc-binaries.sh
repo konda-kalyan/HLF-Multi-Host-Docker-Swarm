@@ -11,16 +11,17 @@ ENV_LOCATION=$PWD/.env
 echo $ENV_LOCATION
 source $ENV_LOCATION
 
-rm $PWD/bin/*	# remove old binaries
+#rm $PWD/bin/*	# remove old binaries
 
-BINARY_FILE=hyperledger-fabric-${OS_ARCH}-${FABRIC_VERSION}.tar.gz
-CA_BINARY_FILE=hyperledger-fabric-ca-${OS_ARCH}-${FABRIC_CA_VERSION}.tar.gz
+BINARY_FILE=hyperledger-fabric-linux-${FABRIC_VERSION}.tar.gz
+echo "Binary file: $BINARY_FILE"
+CA_BINARY_FILE=hyperledger-fabric-ca-linux-${FABRIC_CA_VERSION}.tar.gz
+echo "CA Binary file: $CA_BINARY_FILE"
+echo "https://github.com/hyperledger/fabric/releases/download/v${FABRIC_JUST_VERSION}/${BINARY_FILE}"
 
 pullBinaries() {
 	echo "===> Downloading version ${FABRIC_VERSION} platform specific fabric binaries"
-	set -x
-	download "${BINARY_FILE}" "https://github.com/hyperledger/fabric/releases/download/v${FABRIC_VERSION}/${BINARY_FILE}"
-	set +x
+	download "${BINARY_FILE}" "https://github.com/hyperledger/fabric/releases/download/v${FABRIC_JUST_VERSION}/${BINARY_FILE}"
 	if [ $? -eq 22 ]; then
 		echo
 		echo "------> ${FABRIC_VERSION} platform specific fabric binary is not available to download <----"
@@ -30,7 +31,7 @@ pullBinaries() {
 
 	echo "===> Downloading version ${FABRIC_CA_VERSION} platform specific fabric-ca-client binary"
 	set -x
-	download "${CA_BINARY_FILE}" "https://github.com/hyperledger/fabric-ca/releases/download/v${FABRIC_CA_VERSION}/${CA_BINARY_FILE}"
+	download "${CA_BINARY_FILE}" "https://github.com/hyperledger/fabric-ca/releases/download/v${FABRIC_JUST_VERSION}/${CA_BINARY_FILE}"
 	set +x
 	if [ $? -eq 22 ]; then
 		echo
