@@ -21,10 +21,8 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == 3.17.148.214
+                    - node.hostname == ip-172-31-18-197
                     - engine.labels.aws.region == us-east-2
-                preferences:
-                    -  spread: node.labels.aws.zone
         image: hyperledger/fabric-ca:amd64-1.4.4
         hostname: ca.org1.example.com
         environment:
@@ -47,10 +45,8 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == 3.17.148.214
+                    - node.hostname == ip-172-31-18-197
                     - engine.labels.aws.region == us-east-2
-                preferences:
-                    -  spread: node.labels.aws.zone
         image: hyperledger/fabric-tools:amd64-1.4.4
         tty: true
         hostname: cli
@@ -90,10 +86,8 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == 3.17.148.214
+                    - node.hostname == ip-172-31-18-197
                     - engine.labels.aws.region == us-east-2
-                preferences:
-                    -  spread: node.labels.aws.zone
         image: hyperledger/fabric-couchdb:amd64-0.4.18
         hostname: couchdb0_org1
         networks:
@@ -108,10 +102,8 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == 3.17.148.214
+                    - node.hostname == ip-172-31-18-197
                     - engine.labels.aws.region == us-east-2
-                preferences:
-                    -  spread: node.labels.aws.zone
         image: hyperledger/fabric-couchdb:amd64-0.4.18
         hostname: couchdb1_org1
         networks:

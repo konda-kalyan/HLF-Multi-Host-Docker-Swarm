@@ -16,10 +16,8 @@ services:
         max_attempts: 3
       placement:
         constraints:
-          - node.hostname == 3.17.148.214
+          - node.hostname == ip-172-31-18-197
           - engine.labels.aws.region == us-east-2
-        preferences:
-          - spread: node.labels.aws.zone
     hostname: kafka0
     image: hyperledger/fabric-kafka:amd64-0.4.18
     # Give network alias
@@ -48,10 +46,8 @@ services:
         max_attempts: 3
       placement:
         constraints:
-          - node.hostname == 3.17.148.214
+          - node.hostname == ip-172-31-18-197
           - engine.labels.aws.region == us-east-2
-        preferences:
-          - spread: node.labels.aws.zone
     hostname: kafka1
     image: hyperledger/fabric-kafka:amd64-0.4.18
     # Give network alias
@@ -80,10 +76,8 @@ services:
         max_attempts: 3
       placement:
         constraints:
-          - node.hostname == 3.17.148.214
+          - node.hostname == ip-172-31-18-197
           - engine.labels.aws.region == us-east-2
-        preferences:
-          - spread: node.labels.aws.zone
     hostname: kafka2
     image: hyperledger/fabric-kafka:amd64-0.4.18
     # Give network alias
