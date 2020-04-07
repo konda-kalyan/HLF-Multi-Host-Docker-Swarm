@@ -23,15 +23,13 @@ services:
                 constraints:
                     - node.hostname == ip-172-31-20-131
                     - engine.labels.aws.region == us-east-2
-                preferences:
-                    -  spread: node.labels.aws.zone
         image: hyperledger/fabric-ca:amd64-1.4.4
         hostname: ca.org3.example.com
         environment:
             - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
             - FABRIC_CA_SERVER_CA_NAME=ca_org3
             - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org3.example.com-cert.pem
-            - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/8d27a6d1ecc51a2bb5c092655d8ff04eb9ebc90656e3f2dbdee8a8de8862933b_sk
+            - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/edadc658cf481fdd47c6cdac92daab192523a159db05544df5704ffe4d837826_sk
         ports:
             - 9054:7054   
         command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
@@ -49,8 +47,6 @@ services:
                 constraints:
                     - node.hostname == ip-172-31-20-131
                     - engine.labels.aws.region == us-east-2
-                preferences:
-                    -  spread: node.labels.aws.zone
         image: hyperledger/fabric-couchdb:amd64-0.4.18
         hostname: couchdb0_org3
         networks:
@@ -67,8 +63,6 @@ services:
                 constraints:
                     - node.hostname == ip-172-31-20-131
                     - engine.labels.aws.region == us-east-2
-                preferences:
-                    -  spread: node.labels.aws.zone
         image: hyperledger/fabric-couchdb:amd64-0.4.18
         hostname: couchdb1_org3
         networks:

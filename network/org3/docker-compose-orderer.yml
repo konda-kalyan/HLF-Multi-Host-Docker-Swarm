@@ -19,8 +19,6 @@ services:
                 constraints:
                     - node.hostname == ip-172-31-20-131
                     - engine.labels.aws.region == us-east-2
-                preferences:
-                    -  spread: node.labels.aws.zone
         image: hyperledger/fabric-orderer:amd64-1.4.4
         working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderer
         command: orderer
