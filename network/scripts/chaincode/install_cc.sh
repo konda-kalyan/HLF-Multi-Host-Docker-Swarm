@@ -34,6 +34,14 @@ docker exec "$CLI_NAME" peer chaincode list --instantiated -C "$CHANNEL_NAME" --
 sleep 10
 
 # ================================
-# INVOKING INITLEDGER IN CHAINCODE
+# INVOKING CHAINCODE
 # ================================
-docker exec "$CLI_NAME" peer chaincode invoke -o "$ORDERER_NAME":7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n $CC_NAME -c '{"Args":["initLedger"]}'
+# 'open' an account with account number as '123' and with money '1000' in it
+docker exec "$CLI_NAME" peer chaincode invoke -o "$ORDERER_NAME":7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n $CC_NAME -c '{"Args":["open","123", "1000"]}'
+#docker exec "$CLI_NAME" peer chaincode invoke -o "$ORDERER_NAME":7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n $CC_NAME -c '{"Args":["initLedger"]}'
+
+# ================================
+# QUERING CHAINCODE
+# ================================
+# 'open' an account with account number as '123' and with money '1000' in it
+docker exec "$CLI_NAME" peer chaincode query -o "$ORDERER_NAME":7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n $CC_NAME -c '{"Args":["query","123"]}'
