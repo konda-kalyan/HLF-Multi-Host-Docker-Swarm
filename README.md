@@ -8,5 +8,7 @@ Network topology and different components:
 
 Used ‘Docker Swarm’ as container orchestration tool.
 
+Follow 'HLF_Multi_Node_Network_Setup_Using_Docker_Swarm.docx' document to setup HLF network.
+
 
 Queries??? send to 'konda.kalyan@gmail.com'
