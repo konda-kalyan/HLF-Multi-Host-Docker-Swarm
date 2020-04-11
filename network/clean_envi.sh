@@ -5,3 +5,5 @@ docker rmi -f $(docker images | grep fabric | awk '{print $3}')
 docker network rm $(docker network ls -q)
 docker service rm $(docker service ls -q)
 docker swarm leave -f
+rm -rf config
+rm -rf crypto-config

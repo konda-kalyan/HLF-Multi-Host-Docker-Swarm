@@ -22,7 +22,7 @@ services:
         image: hyperledger/fabric-orderer:amd64-1.4.4
         working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderer
         command: orderer
-        hostname: orderer2.example.com
+        hostname: orderer3.example.com
         environment:
             - ORDERER_GENERAL_LOGLEVEL=debug
             - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
@@ -44,23 +44,17 @@ services:
             - ORDERER_TLS_CLIENTROOTCAS_FILES=/var/hyperledger/users/Admin@example.com/tls/ca.crt
             - ORDERER_TLS_CLIENTCERT_FILE=/var/hyperledger/users/Admin@example.com/tls/client.crt
             - ORDERER_TLS_CLIENTKEY_FILE=/var/hyperledger/users/Admin@example.com/tls/client.key
-            - ORDERER_HOST=orderer2.example.com
-            - CONFIGTX_ORDERER_ORDERERTYPE=kafka
-            - CONFIGTX_ORDERER_KAFKA_BROKERS=[kafka0:9092,kafka1:9092,kafka2:9092]
-            - ORDERER_KAFKA_RETRY_SHORTINTERVAL=1s
-            - ORDERER_KAFKA_RETRY_SHORTTOTAL=30s
-            - ORDERER_KAFKA_VERBOSE=true
-            - ORDERER_GENERAL_GENESISPROFILE=SecureKafka
+            - ORDERER_HOST=orderer3.example.com
             - ORDERER_ABSOLUTEMAXBYTES=10MB
             - ORDERER_PREFERREDMAXBYTES=512KB
         volumes:
             - /var/mynetwork/certs/crypto-config/ordererOrganizations/example.com/users:/var/hyperledger/users
-            - /var/mynetwork/certs/crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/msp:/var/hyperledger/msp
-            - /var/mynetwork/certs/crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/tls:/var/hyperledger/tls
+            - /var/mynetwork/certs/crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/msp:/var/hyperledger/msp
+            - /var/mynetwork/certs/crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/tls:/var/hyperledger/tls
             - /var/mynetwork/certs/config/:/var/hyperledger/config
         ports:
           - 9050:7050
         networks:
           skcript:
             aliases:
-                - orderer2.example.com
+                - orderer3.example.com

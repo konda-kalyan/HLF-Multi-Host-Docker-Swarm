@@ -24,7 +24,7 @@ if [ "$?" -ne 0 ]; then
 fi
 
 # generate genesis block for orderer
-configtxgen -configPath . -profile OrdererGenesis -channelID $SYS_CHANNEL_NAME -outputBlock ./config/genesis.block
+configtxgen -configPath . -profile SampleMultiNodeEtcdRaft -channelID $SYS_CHANNEL_NAME -outputBlock ./config/genesis.block
 if [ "$?" -ne 0 ]; then
   echo "Failed to generate orderer genesis block..."
   exit 1
