@@ -29,7 +29,7 @@ services:
             - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
             - FABRIC_CA_SERVER_CA_NAME=ca_org3
             - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org3.example.com-cert.pem
-            - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/5167e985c7874b2dd0a093ba24ebc0782dd95253ca415523ea73ead67656d8fe_sk
+            - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/66d131ee0d0f5cdac95434dc8093a8f315a9c1b2e3dc19417b996c9a0fa4334e_sk
         ports:
             - 9054:7054   
         command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
@@ -50,7 +50,7 @@ services:
         image: hyperledger/fabric-couchdb:amd64-0.4.18
         hostname: couchdb0_org3
         ports:
-           - 5984:5984
+           - 9984:5984
         networks:
            - skcript
 
@@ -68,6 +68,6 @@ services:
         image: hyperledger/fabric-couchdb:amd64-0.4.18
         hostname: couchdb1_org3
         ports:
-           - 6984:5984
+           - 10984:5984
         networks:
            - skcript
