@@ -17,7 +17,7 @@ services:
                 max_attempts: 3
             placement:
                 constraints:
-                    - node.hostname == ip-172-31-13-137
+                    - node.hostname == ip-172-31-22-238
                     - engine.labels.aws.region == us-east-2
         image: hyperledger/fabric-orderer:amd64-1.4.4
         working_dir: /opt/gopath/src/github.com/hyperledger/fabric/orderer
