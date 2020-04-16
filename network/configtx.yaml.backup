@@ -376,13 +376,13 @@ Profiles:
             Capabilities:
                 <<: *OrdererCapabilities
         Consortiums:
-            SampleConsortium:
+            MyConsortium:
                 Organizations:
                     - *Org1
                     - *Org2
                     - *Org3
     MyChannel:
-        Consortium: SampleConsortium
+        Consortium: MyConsortium
         <<: *ChannelDefaults
         Application:
             <<: *ApplicationDefaults
@@ -413,7 +413,7 @@ Profiles:
             Organizations:
             - <<: *OrdererOrg
         Consortiums:
-            SampleConsortium:
+            MyConsortium:
                 Organizations:
                 - *Org1
                 - *Org2
@@ -454,7 +454,7 @@ Profiles:
             Organizations:
             - <<: *OrdererOrg
         Consortiums:
-            SampleConsortium:
+            MyConsortium:
                 Organizations:
                 - *Org1
                 - *Org2
