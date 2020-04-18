@@ -33,7 +33,7 @@ pullBinaries() {
 	download "${CA_BINARY_FILE}" "https://github.com/hyperledger/fabric-ca/releases/download/v${FABRIC_JUST_VERSION}/${CA_BINARY_FILE}"
 	if [ $? -eq 22 ]; then
 		echo
-		echo "------> ${FABRIC_CA_VERSION} fabric-ca-client binary is not available to download  (Available from 1.1.0-rc1) <----"
+		echo "------> ${FABRIC_CA_VERSION} fabric-ca-client binary is not available to download  (Available from 1.4.4-rc1) <----"
 		echo
 		exit
 	fi
