@@ -31,7 +31,7 @@ services:
             - CORE_PEER_PROFILE_ENABLED=true
             - CORE_PEER_MSPCONFIGPATH=/var/hyperledger/msp
             #- CORE_LEDGER_STATE_STATEDATABASE=LevelDB
-            - FABRIC_LOGGING_SPEC=debug
+            - FABRIC_LOGGING_SPEC=INFO
             - CORE_LOGGING_GOSSIP=${CORE_LOGGING_GOSSIP}
             - CORE_LOGGING_MSP=CRITICAL
             # - CORE_PEER_MSPCONFIGPATH=/var/hyperledger/msp
@@ -88,7 +88,7 @@ services:
             - CORE_PEER_ADDRESSAUTODETECT=true
             - CORE_PEER_PROFILE_ENABLED=true
             - CORE_PEER_MSPCONFIGPATH=/var/hyperledger/msp
-            - FABRIC_LOGGING_SPEC=debug
+            - FABRIC_LOGGING_SPEC=INFO
             - CORE_LOGGING_GOSSIP=${CORE_LOGGING_GOSSIP}
             - CORE_LOGGING_MSP=CRITICAL
             # TLS settings
