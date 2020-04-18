@@ -5,7 +5,7 @@
 #
 # This script pulls docker images from the Dockerhub hyperledger repositories
 
-set -ev
+#set -ev
 
 ENV_LOCATION=$PWD/.env
 echo $ENV_LOCATION

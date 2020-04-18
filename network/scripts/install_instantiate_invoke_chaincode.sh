@@ -36,12 +36,13 @@ sleep 10
 # ================================
 # INVOKING CHAINCODE
 # ================================
-# 'open' an account with account number as '123' and with money '1000' in it
+# 'create/open' an account with account number as '123' and with money '1000' in it
 docker exec "$CLI_NAME" peer chaincode invoke -o "$ORDERER_NAME":7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n $CC_NAME -c '{"Args":["open","123", "1000"]}'
-#docker exec "$CLI_NAME" peer chaincode invoke -o "$ORDERER_NAME":7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n $CC_NAME -c '{"Args":["initLedger"]}'
+
+sleep 10
 
 # ================================
 # QUERING CHAINCODE
 # ================================
-# 'open' an account with account number as '123' and with money '1000' in it
+# 'query/retrive' an account with account number as '123' which has money '1000' in it
 docker exec "$CLI_NAME" peer chaincode query -o "$ORDERER_NAME":7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n $CC_NAME -c '{"Args":["query","123"]}'
