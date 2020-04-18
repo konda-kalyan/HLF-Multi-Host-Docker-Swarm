@@ -1,9 +1,5 @@
 #!/bin/bash
 #
-# Copyright Skcript Technologies Pvt. Ltd All Rights Reserved
-#
-# SPDX-License-Identifier: Apache-2.0
-#
 # set -ev
 
 source ${PWD}/.env

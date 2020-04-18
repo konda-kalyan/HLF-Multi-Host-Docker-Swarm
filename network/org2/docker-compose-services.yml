@@ -2,15 +2,15 @@
 version: '3.2'
 
 networks:
-    skcript:
+    hlf_multi_host_network:
         external: 
-            name: skcript
+            name: hlf_multi_host_network
 
 services:
 
     ca_org2:
         networks:
-            skcript:
+            hlf_multi_host_network:
                 aliases:
                     - ca_org2
         deploy:
@@ -29,7 +29,7 @@ services:
             - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
             - FABRIC_CA_SERVER_CA_NAME=ca_org2
             - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org2.example.com-cert.pem
-            - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/a28716d196c8c86d96b168cd40c724ae5a091dbab785bb1fd2214966a75bac96_sk
+            - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/89958b75ead921834a8e9b6fdcf61e219baced5c149053b6ca15ff128501bede_sk
         ports:
             - "8054:7054"   
         command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
@@ -52,7 +52,7 @@ services:
         ports:
            - 7984:5984
         networks:
-           - skcript
+           - hlf_multi_host_network
 
     couchdb1_org2:
         deploy:
@@ -70,4 +70,4 @@ services:
         ports:
            - 8984:5984
         networks:
-           - skcript
+           - hlf_multi_host_network

@@ -2,15 +2,15 @@
 version: '3.2'
 
 networks:
-    skcript:
+    hlf_multi_host_network:
         external: 
-            name: skcript
+            name: hlf_multi_host_network
 
 services:
 
     ca_org1:
         networks:
-            skcript:
+            hlf_multi_host_network:
                 aliases:
                     - ca_org1
         deploy:
@@ -29,7 +29,7 @@ services:
             - FABRIC_CA_HOME=/etc/hyperledger/fabric-ca-server
             - FABRIC_CA_SERVER_CA_NAME=ca_org1
             - FABRIC_CA_SERVER_CA_CERTFILE=/etc/hyperledger/fabric-ca-server-config/ca.org1.example.com-cert.pem
-            - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/eff6c4d53f07928f298ff26ab5689a677d6b7c0de6f8adfb57e2a2ef3aecea13_sk
+            - FABRIC_CA_SERVER_CA_KEYFILE=/etc/hyperledger/fabric-ca-server-config/a5cffb4411b65918d94fb9a1e0b15e5a67e0ca727732bf6978fd76e99e45343a_sk
         ports:
             - "7054:7054"   
         command: sh -c 'fabric-ca-server start -b admin:adminpw -d'
@@ -54,7 +54,7 @@ services:
         environment:
           - GOPATH=/opt/gopath
           - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
-          - FABRIC_LOGGING_SPEC=DEBUG
+          - FABRIC_LOGGING_SPEC=INFO
           - CORE_PEER_ID=cli.org1.example.com
           - CORE_PEER_ADDRESS=peer0.org1.example.com:7051
           - CORE_PEER_LOCALMSPID=Org1MSP
@@ -79,7 +79,7 @@ services:
             - /var/mynetwork/certs/crypto-config/peerOrganizations/org1.example.com/users:/var/hyperledger/users
             # - /var/mynetwork/bin/jq:/usr/local/bin/jq
         networks:
-            - skcript
+            - hlf_multi_host_network
         depends_on:
             - orderer1.example.com
             - orderer2.example.com
@@ -107,7 +107,7 @@ services:
         ports:
            - 5984:5984
         networks:
-           - skcript    
+           - hlf_multi_host_network    
 
     couchdb1_org1:
         deploy:
@@ -125,4 +125,4 @@ services:
         ports:
            - 6984:5984
         networks:
-           - skcript    
+           - hlf_multi_host_network    

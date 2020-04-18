@@ -2,9 +2,9 @@
 version: '3.2'
 
 networks:
-    skcript:
+    hlf_multi_host_network:
         external: 
-            name: skcript
+            name: hlf_multi_host_network
 
 services:
 
@@ -24,7 +24,7 @@ services:
         command: orderer
         hostname: orderer1.example.com
         environment:
-          - FABRIC_LOGGING_SPEC=DEBUG
+          - FABRIC_LOGGING_SPEC=INFO
           - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
           - ORDERER_GENERAL_LISTENPORT=7050
           - ORDERER_GENERAL_GENESISMETHOD=file
@@ -49,6 +49,6 @@ services:
             - /var/mynetwork/certs/crypto-config/ordererOrganizations/example.com/orderers/orderer1.example.com/tls:/var/hyperledger/tls
             - /var/mynetwork/certs/config/:/var/hyperledger/config
         networks:
-          skcript:
+          hlf_multi_host_network:
             aliases:
                 - orderer1.example.com

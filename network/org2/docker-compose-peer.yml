@@ -2,9 +2,9 @@
 version: '3.2'
 
 networks:
-  skcript:
+  hlf_multi_host_network:
     external: 
-      name: skcript
+      name: hlf_multi_host_network
 
 services:
 
@@ -23,15 +23,15 @@ services:
     hostname: peer0.org2.example.com
     environment:
       - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
-      - CORE_PEER_NETWORKID=skcript
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=skcript
+      - CORE_PEER_NETWORKID=hlf_multi_host_network
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=hlf_multi_host_network
       - CORE_PEER_ADDRESSAUTODETECT=true
       # - CORE_PEER_GOSSIP_ORGLEADER=false
       # - CORE_PEER_GOSSIP_USELEADERELECTION=true
       - CORE_PEER_PROFILE_ENABLED=true
       - CORE_PEER_MSPCONFIGPATH=/var/hyperledger/msp
       #- CORE_LEDGER_STATE_STATEDATABASE=LevelDB
-      - FABRIC_LOGGING_SPEC=DEBUG
+      - FABRIC_LOGGING_SPEC=INFO
       - CORE_LOGGING_GOSSIP=${CORE_LOGGING_GOSSIP}
       - CORE_LOGGING_MSP=CRITICAL
       # - CORE_PEER_MSPCONFIGPATH=/var/hyperledger/msp
@@ -48,8 +48,8 @@ services:
       - CORE_PEER_LOCALMSPID=Org2MSP
       - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb0_org2:5984
-      - CORE_CHAINCODE_LOGGING_LEVEL=DEBUG
-      - CORE_CHAINCODE_LOGGING_SHIM=DEBUG
+      - CORE_CHAINCODE_LOGGING_LEVEL=INFO
+      - CORE_CHAINCODE_LOGGING_SHIM=INFO
     volumes:
       - /var/run/:/host/var/run/
       # - $GOPATH/src/github.com/hyperledger/fabric/:/opt/gopath/src/github.com/hyperledger/fabric/
@@ -63,7 +63,7 @@ services:
     depends_on:
       - couchdb0_org2
     networks:
-      skcript:
+      hlf_multi_host_network:
         aliases:
           - peer0.org2.example.com
     ports:
@@ -85,15 +85,15 @@ services:
     hostname: peer1.org2.example.com
     environment:
       - CORE_VM_ENDPOINT=unix:///host/var/run/docker.sock
-      - CORE_PEER_NETWORKID=skcript
-      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=skcript
+      - CORE_PEER_NETWORKID=hlf_multi_host_network
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=hlf_multi_host_network
       - CORE_PEER_ADDRESSAUTODETECT=true
       # - CORE_PEER_GOSSIP_ORGLEADER=false
       # - CORE_PEER_GOSSIP_USELEADERELECTION=true
       - CORE_PEER_PROFILE_ENABLED=true
       - CORE_PEER_MSPCONFIGPATH=/var/hyperledger/msp
       #- CORE_LEDGER_STATE_STATEDATABASE=LevelDB
-      - FABRIC_LOGGING_SPEC=DEBUG
+      - FABRIC_LOGGING_SPEC=INFO
       - CORE_LOGGING_GOSSIP=${CORE_LOGGING_GOSSIP}
       - CORE_LOGGING_MSP=CRITICAL
       # - CORE_PEER_MSPCONFIGPATH=/var/hyperledger/msp
@@ -126,6 +126,6 @@ services:
       - 10051:7051
       - 10053:7053
     networks:
-      skcript:
+      hlf_multi_host_network:
         aliases:
           - peer1.org2.example.com

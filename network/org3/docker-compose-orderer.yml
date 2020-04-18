@@ -2,9 +2,9 @@
 version: '3.2'
 
 networks:
-    skcript:
+    hlf_multi_host_network:
         external: 
-            name: skcript
+            name: hlf_multi_host_network
 
 services:
 
@@ -24,7 +24,7 @@ services:
         command: orderer
         hostname: orderer3.example.com
         environment:
-          - FABRIC_LOGGING_SPEC=DEBUG
+          - FABRIC_LOGGING_SPEC=INFO
           - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
           - ORDERER_GENERAL_LISTENPORT=7050
           - ORDERER_GENERAL_GENESISMETHOD=file
@@ -49,6 +49,6 @@ services:
         ports:
           - 9050:7050
         networks:
-          skcript:
+          hlf_multi_host_network:
             aliases:
                 - orderer3.example.com
