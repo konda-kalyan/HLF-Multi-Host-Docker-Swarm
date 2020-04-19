@@ -15,7 +15,7 @@ DOCKER_NS=hyperledger
 
 # set of Hyperledger Fabric images
 FABRIC_CORE_IMAGES=(fabric-peer fabric-orderer fabric-ca fabric-tools fabric-ccenv fabric-javaenv)
-FABRIC_OTHER_IMAGES=(fabric-kafka fabric-zookeeper fabric-couchdb fabric-baseos)
+FABRIC_OTHER_IMAGES=(fabric-couchdb fabric-baseos)
 
 for image in ${FABRIC_CORE_IMAGES[@]}; do
   echo "Pulling ${DOCKER_NS}/$image:${FABRIC_VERSION}"
@@ -23,6 +23,6 @@ for image in ${FABRIC_CORE_IMAGES[@]}; do
 done
 
 for image in ${FABRIC_OTHER_IMAGES[@]}; do
-  echo "Pulling ${DOCKER_NS}/$image:${COUCHDB_KAFKA_ZOOKEEPER_IMAGE_VERSION}"
-  docker pull ${DOCKER_NS}/$image:${COUCHDB_KAFKA_ZOOKEEPER_IMAGE_VERSION}
+  echo "Pulling ${DOCKER_NS}/$image:${COUCHDB_IMAGE_VERSION}"
+  docker pull ${DOCKER_NS}/$image:${COUCHDB_IMAGE_VERSION}
 done

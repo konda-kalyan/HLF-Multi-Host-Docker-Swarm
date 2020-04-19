@@ -1,9 +1,5 @@
 #!/bin/bash
 #
-# Copyright Skcript Technologies Pvt. Ltd All Rights Reserved
-#
-# SPDX-License-Identifier: Apache-2.0
-#
 # set -ev
 
 source ${PWD}/.env
@@ -24,7 +20,8 @@ if [ "$?" -ne 0 ]; then
 fi
 
 # generate genesis block for orderer
-configtxgen -configPath . -profile OrdererGenesis -channelID $SYS_CHANNEL_NAME -outputBlock ./config/genesis.block
+echo "SYS_CHANNEL_NAME: $SYS_CHANNEL_NAME"
+configtxgen -configPath . -profile SampleMultiNodeEtcdRaft -channelID $SYS_CHANNEL_NAME -outputBlock ./config/genesis.block
 if [ "$?" -ne 0 ]; then
   echo "Failed to generate orderer genesis block..."
   exit 1

@@ -10,5 +10,7 @@ Used ‘Docker Swarm’ as container orchestration tool.
 
 Follow 'HLF_Multi_Node_Network_Setup_Using_Docker_Swarm.docx' document to setup HLF network.
 
+IMPORTANT NOTE: This example sets up network on AWS environment. If you are using non-AWS envi then you need to remove AWS references in .env file and docker compose files, and then configure cloud/local settings accordingly
+
 
 Queries??? send to 'konda.kalyan@gmail.com'

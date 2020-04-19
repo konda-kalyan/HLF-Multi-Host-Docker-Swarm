@@ -248,12 +248,10 @@ Orderer: &OrdererDefaults
 
     # Orderer Type: The orderer implementation to start
     # Available types are "solo","kafka"  and "etcdraft"
-    OrdererType: kafka
+    OrdererType: etcdraft
 
     Addresses:
-        - orderer0.example.com:7050
         - orderer1.example.com:7050
-        - orderer2.example.com:7050
 
     # Batch Timeout: The amount of time to wait before creating a batch
     BatchTimeout: 2s
@@ -289,10 +287,10 @@ Orderer: &OrdererDefaults
         # a subset of the host:port items enumerated in this list should be
         # replicated under the Orderer.Addresses key above.
         Consenters:
-            - Host: orderer.example.com
+            - Host: orderer1.example.com
               Port: 7050
-              ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
-              ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
+              ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer1.example.com/tls/server.crt
+              ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer1.example.com/tls/server.crt
             - Host: orderer2.example.com
               Port: 7050
               ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/server.crt
@@ -301,14 +299,6 @@ Orderer: &OrdererDefaults
               Port: 7050
               ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/server.crt
               ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/server.crt
-            - Host: orderer4.example.com
-              Port: 7050
-              ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/tls/server.crt
-              ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/tls/server.crt
-            - Host: orderer5.example.com
-              Port: 7050
-              ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/tls/server.crt
-              ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/tls/server.crt
 
     # Organizations is the list of orgs which are defined as participants on
     # the orderer side of the network
@@ -384,13 +374,13 @@ Profiles:
             Capabilities:
                 <<: *OrdererCapabilities
         Consortiums:
-            MyConsortium:
+            SampleConsortium:
                 Organizations:
                     - *Org1
                     - *Org2
                     - *Org3
     MyChannel:
-        Consortium: MyConsortium
+        Consortium: SampleConsortium
         <<: *ChannelDefaults
         Application:
             <<: *ApplicationDefaults
@@ -425,6 +415,7 @@ Profiles:
                 Organizations:
                 - *Org1
                 - *Org2
+                - *Org3
 
     SampleMultiNodeEtcdRaft:
         <<: *ChannelDefaults
@@ -435,10 +426,10 @@ Profiles:
             OrdererType: etcdraft
             EtcdRaft:
                 Consenters:
-                - Host: orderer.example.com
+                - Host: orderer1.example.com
                   Port: 7050
-                  ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
-                  ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer.example.com/tls/server.crt
+                  ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer1.example.com/tls/server.crt
+                  ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer1.example.com/tls/server.crt
                 - Host: orderer2.example.com
                   Port: 7050
                   ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer2.example.com/tls/server.crt
@@ -447,20 +438,10 @@ Profiles:
                   Port: 7050
                   ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/server.crt
                   ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/tls/server.crt
-                - Host: orderer4.example.com
-                  Port: 7050
-                  ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/tls/server.crt
-                  ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer4.example.com/tls/server.crt
-                - Host: orderer5.example.com
-                  Port: 7050
-                  ClientTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/tls/server.crt
-                  ServerTLSCert: crypto-config/ordererOrganizations/example.com/orderers/orderer5.example.com/tls/server.crt
             Addresses:
-                - orderer.example.com:7050
+                - orderer1.example.com:7050
                 - orderer2.example.com:7050
                 - orderer3.example.com:7050
-                - orderer4.example.com:7050
-                - orderer5.example.com:7050
 
             Organizations:
             - *OrdererOrg
@@ -475,3 +456,4 @@ Profiles:
                 Organizations:
                 - *Org1
                 - *Org2
+                - *Org3
