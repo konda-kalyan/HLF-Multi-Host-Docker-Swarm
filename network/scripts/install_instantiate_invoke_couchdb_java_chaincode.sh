@@ -4,6 +4,8 @@ source $GLOBAL_ENV_LOCATION
 
 set -ev
 
+set -x
+
 # ============================
 # INSTALLING CHAINCODE IN ORG1
 # ============================
@@ -35,15 +37,34 @@ docker exec "$CLI_NAME" peer chaincode list --instantiated -C "$CHANNEL_NAME" --
 sleep 10
 
 # ================================
-# INVOKING CHAINCODE
+# INVOKING CHAINCODE	(Adding multiple employees)
 # ================================
 # adds employee with given values
 docker exec "$CLI_NAME" peer chaincode invoke -o "$ORDERER_NAME":7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n $COUCHDB_JAVA_CC_NAME -c '{"Args":["addEmployee","1", "Kalyan", "Blockchain", "100", "Hyd"]}'
+sleep 10
+
+docker exec "$CLI_NAME" peer chaincode invoke -o "$ORDERER_NAME":7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n $COUCHDB_JAVA_CC_NAME -c '{"Args":["addEmployee","2", "Fabric", "Hyperledger", "1004", "Delhi"]}'
+sleep 10
+
+docker exec "$CLI_NAME" peer chaincode invoke -o "$ORDERER_NAME":7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n $COUCHDB_JAVA_CC_NAME -c '{"Args":["addEmployee","3", "Kalyan", "Blockchain", "15", "Hyd"]}'
+sleep 10
+
+docker exec "$CLI_NAME" peer chaincode invoke -o "$ORDERER_NAME":7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n $COUCHDB_JAVA_CC_NAME -c '{"Args":["addEmployee","4", "Konda", "Fabric", "10003", "Blr"]}'
 
 sleep 10
 
 # ================================
-# QUERING CHAINCODE
+# QUERING CHAINCODE - Normal regular query
 # ================================
 # query employee by id
 docker exec "$CLI_NAME" peer chaincode invoke -o "$ORDERER_NAME":7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n $COUCHDB_JAVA_CC_NAME -c '{"Args":["queryEmployee", "1"]}'
+
+# ================================
+# RICH QUERY: queryEmpBySalaryGreaterThanXAmount - Parameterized rich query
+# ================================
+docker exec "$CLI_NAME" peer chaincode invoke -o "$ORDERER_NAME":7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n $COUCHDB_JAVA_CC_NAME -c '{"Args":["queryEmpBySalaryGreaterThanXAmount", "100"]}'
+
+# ================================
+# RICH QUERY: queryEmployees - Ad hoc rich query (query employees by name)
+# ================================
+docker exec "$CLI_NAME" peer chaincode invoke -o "$ORDERER_NAME":7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n $COUCHDB_JAVA_CC_NAME -c '{"Args":["queryEmployees", "{\"selector\":{\"empName\":\"Kalyan\"}, \"use_index\":[\"_design/empNameIndexDoc\", \"empNameIndex\"]}"]}'
