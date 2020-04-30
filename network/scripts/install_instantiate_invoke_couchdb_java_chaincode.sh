@@ -25,7 +25,7 @@ docker exec -e "CORE_PEER_LOCALMSPID=Org3MSP" -e "CORE_PEER_TLS_CERT_FILE=/opt/g
 # INSTANTIATING THE CHAINCODE
 # ===========================
 # add dummy employee with empID with 0
-docker exec "$CLI_NAME" peer chaincode instantiate -o "$ORDERER_NAME":7050 -C "$CHANNEL_NAME" -l java -n "$COUCHDB_JAVA_CC_NAME" "$COUCHDB_JAVA_CC_SRC" -v v0  -c '{"Args":["init", "0", "init_name", "init_dept", "0", "init_loc"]}' -P "OR('Org1MSP.member', 'Org2MSP.member', 'Org3MSP.member' )" --tls --cafile $ORDERER_CA
+docker exec "$CLI_NAME" peer chaincode instantiate -o "$ORDERER_NAME":7050 -C "$CHANNEL_NAME" -l java -n "$COUCHDB_JAVA_CC_NAME" "$COUCHDB_JAVA_CC_SRC" -v v0  -c '{"Args":["init", "0", "init_name", "init_dept", "5", "init_loc"]}' -P "OR('Org1MSP.member', 'Org2MSP.member', 'Org3MSP.member' )" --tls --cafile $ORDERER_CA
 
 sleep 3
 
@@ -54,9 +54,8 @@ docker exec "$CLI_NAME" peer chaincode invoke -o "$ORDERER_NAME":7050 --tls --ca
 sleep 10
 
 # ================================
-# QUERING CHAINCODE - Normal regular query
+# QUERING CHAINCODE - Normal regular query (query employee by id)
 # ================================
-# query employee by id
 docker exec "$CLI_NAME" peer chaincode invoke -o "$ORDERER_NAME":7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n $COUCHDB_JAVA_CC_NAME -c '{"Args":["queryEmployee", "1"]}'
 
 # ================================
@@ -68,3 +67,13 @@ docker exec "$CLI_NAME" peer chaincode invoke -o "$ORDERER_NAME":7050 --tls --ca
 # RICH QUERY: queryEmployees - Ad hoc rich query (query employees by name)
 # ================================
 docker exec "$CLI_NAME" peer chaincode invoke -o "$ORDERER_NAME":7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n $COUCHDB_JAVA_CC_NAME -c '{"Args":["queryEmployees", "{\"selector\":{\"empName\":\"Kalyan\"}, \"use_index\":[\"_design/empNameIndexDoc\", \"empNameIndex\"]}"]}'
+
+# ================================
+# QUERING CHAINCODE - Normal regular query (query employees by given empIDs range)
+# ================================
+docker exec "$CLI_NAME" peer chaincode invoke -o "$ORDERER_NAME":7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n $COUCHDB_JAVA_CC_NAME -c '{"Args":["queryEmpsByGivenEmpIDRange", "0", "3"]}'
+
+# ================================
+# RICH QUERY: queryEmpBySalaryGreaterThanXAmountWithPagination (get first 3 rows whose salary is greater than 1) - Parameterized rich query
+# ================================
+docker exec "$CLI_NAME" peer chaincode invoke -o "$ORDERER_NAME":7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n $COUCHDB_JAVA_CC_NAME -c '{"Args":["queryEmpBySalaryGreaterThanXAmountWithPagination", "1", "3", ""]}'
