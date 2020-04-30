@@ -77,3 +77,27 @@ docker exec "$CLI_NAME" peer chaincode invoke -o "$ORDERER_NAME":7050 --tls --ca
 # RICH QUERY: queryEmpBySalaryGreaterThanXAmountWithPagination (get first 3 rows whose salary is greater than 1) - Parameterized rich query
 # ================================
 docker exec "$CLI_NAME" peer chaincode invoke -o "$ORDERER_NAME":7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n $COUCHDB_JAVA_CC_NAME -c '{"Args":["queryEmpBySalaryGreaterThanXAmountWithPagination", "1", "3", ""]}'
+
+# ================================
+# INVOKING CHAINCODE - Update employee
+# ================================
+docker exec "$CLI_NAME" peer chaincode invoke -o "$ORDERER_NAME":7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n $COUCHDB_JAVA_CC_NAME -c '{"Args":["updateEmployee", "1", "Raja", "AI", "89", "Bvrm"]}'
+sleep 10
+
+# ================================
+# INVOKING CHAINCODE - Update employee
+# ================================
+docker exec "$CLI_NAME" peer chaincode invoke -o "$ORDERER_NAME":7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n $COUCHDB_JAVA_CC_NAME -c '{"Args":["updateEmployee", "1", "Tinku", "Some", "59", "Pkl"]}'
+sleep 10
+
+# ================================
+# QUERING CHAINCODE - Check the updates now	(Normal regular query (query employee by id))
+# ================================
+docker exec "$CLI_NAME" peer chaincode invoke -o "$ORDERER_NAME":7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n $COUCHDB_JAVA_CC_NAME -c '{"Args":["queryEmployee", "1"]}'
+sleep 10
+
+
+# ================================
+# QUERING CHAINCODE - Get history for a key now
+# ================================
+docker exec "$CLI_NAME" peer chaincode invoke -o "$ORDERER_NAME":7050 --tls --cafile $ORDERER_CA -C $CHANNEL_NAME -n $COUCHDB_JAVA_CC_NAME -c '{"Args":["getHistoryForKey", "1"]}'
