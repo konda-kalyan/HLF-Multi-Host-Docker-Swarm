@@ -15,4 +15,4 @@ echo "**************************	STEP-4 IS COMPLETED 	**************************
 
 ./STEP5_create_channel_then_do_chaincode_operations.sh
 
-echo "**************************	STEP-5 IS COMPLETED 	*************************************"
+#echo "**************************	STEP-5 IS COMPLETED 	*************************************"
