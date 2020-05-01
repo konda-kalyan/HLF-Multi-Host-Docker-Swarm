@@ -4,7 +4,7 @@ Network topology and different components:
 •	One Fabric CA per organization
 •	Couchdb as world state in each and every peer.
 •	One Channel called ‘mychannel’
-•	One Chaincode named ‘simple’ installed in the channel. Simple Chaincode written in ‘go’ language
+•	3 Chaincodes (1. Simple Chaincode written in ‘go’ language, 2. Simple Chaincode written in ‘java’ language, 3. Chaincode written in ‘java’ language with CouchDB rich queries)
 
 Used ‘Docker Swarm’ as container orchestration tool.
 
