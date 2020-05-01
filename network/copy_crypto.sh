@@ -13,6 +13,6 @@ sudo mkdir -p /var/mynetwork/bin
 #git checkout release-1.4
 #cd -
 sudo cp -R crypto-config /var/mynetwork/certs/
-sudo cp -R config /var/mynetwork/certs/
+sudo cp -R channel-artifacts /var/mynetwork/certs/
 sudo cp -R ../chaincodes/* /var/mynetwork/chaincode/
 sudo cp -R bin/* /var/mynetwork/bin/
