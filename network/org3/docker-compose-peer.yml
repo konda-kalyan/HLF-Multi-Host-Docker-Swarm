@@ -57,7 +57,7 @@ services:
             - /var/mynetwork/certs/crypto-config/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/msp:/var/hyperledger/msp
             - /var/mynetwork/certs/crypto-config/peerOrganizations/org3.example.com/peers/peer0.org3.example.com/tls:/var/hyperledger/tls
             - /var/mynetwork/certs/crypto-config/peerOrganizations/org3.example.com/users:/var/hyperledger/users
-            - /var/mynetwork/certs/config/:/var/hyperledger/config
+            - /var/mynetwork/certs/channel-artifacts/:/var/hyperledger/channel-artifacts
         command: peer node start
         working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
         depends_on:
@@ -111,7 +111,7 @@ services:
             - /var/mynetwork/certs/crypto-config/peerOrganizations/org3.example.com/peers/peer1.org3.example.com/msp:/var/hyperledger/msp
             - /var/mynetwork/certs/crypto-config/peerOrganizations/org3.example.com/peers/peer1.org3.example.com/tls:/var/hyperledger/tls
             - /var/mynetwork/certs/crypto-config/peerOrganizations/org3.example.com/users:/var/hyperledger/users
-            - /var/mynetwork/certs/config/:/var/hyperledger/config
+            - /var/mynetwork/certs/channel-artifacts/:/var/hyperledger/channel-artifacts
         command: peer node start
         working_dir: /opt/gopath/src/github.com/hyperledger/fabric/peer
         depends_on:

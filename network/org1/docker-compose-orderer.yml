@@ -28,7 +28,7 @@ services:
           - ORDERER_GENERAL_LISTENADDRESS=0.0.0.0
           - ORDERER_GENERAL_LISTENPORT=7050
           - ORDERER_GENERAL_GENESISMETHOD=file
-          - ORDERER_GENERAL_GENESISFILE=/var/hyperledger/config/genesis.block
+          - ORDERER_GENERAL_GENESISFILE=/var/hyperledger/channel-artifacts/genesis.block
           - ORDERER_GENERAL_LOCALMSPID=OrdererMSP
           - ORDERER_GENERAL_LOCALMSPDIR=/var/hyperledger/msp
           # enabled TLS
@@ -47,7 +47,7 @@ services:
             - /var/mynetwork/certs/crypto-config/ordererOrganizations/example.com/users:/var/hyperledger/users
             - /var/mynetwork/certs/crypto-config/ordererOrganizations/example.com/orderers/orderer1.example.com/msp:/var/hyperledger/msp
             - /var/mynetwork/certs/crypto-config/ordererOrganizations/example.com/orderers/orderer1.example.com/tls:/var/hyperledger/tls
-            - /var/mynetwork/certs/config/:/var/hyperledger/config
+            - /var/mynetwork/certs/channel-artifacts/:/var/hyperledger/channel-artifacts
         networks:
           hlf_multi_host_network:
             aliases:
