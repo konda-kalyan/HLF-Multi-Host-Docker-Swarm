@@ -106,6 +106,8 @@ services:
             - CORE_PEER_LOCALMSPID=Org3MSP
             - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
             - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb1_org3:5984
+            - CORE_CHAINCODE_LOGGING_LEVEL=info
+            - CORE_CHAINCODE_LOGGING_SHIM=info
         volumes:
             - /var/run/:/host/var/run/
             - /var/mynetwork/certs/crypto-config/peerOrganizations/org3.example.com/peers/peer1.org3.example.com/msp:/var/hyperledger/msp
