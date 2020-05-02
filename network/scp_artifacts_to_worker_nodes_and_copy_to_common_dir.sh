@@ -1,9 +1,4 @@
 #!/bin/bash -eu
-# Copyright London Stock Exchange Group All Rights Reserved.
-#
-# SPDX-License-Identifier: Apache-2.0
-#
-# This script pulls docker images from the Dockerhub hyperledger repositories
 
 #set -ev
 
