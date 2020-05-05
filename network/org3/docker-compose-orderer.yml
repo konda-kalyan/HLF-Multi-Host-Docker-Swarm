@@ -41,6 +41,13 @@ services:
           - ORDERER_GENERAL_CLUSTER_CLIENTCERTIFICATE=/var/hyperledger/tls/server.crt
           - ORDERER_GENERAL_CLUSTER_CLIENTPRIVATEKEY=/var/hyperledger/tls/server.key
           - ORDERER_GENERAL_CLUSTER_ROOTCAS=[/var/hyperledger/tls/ca.crt]
+          - ORDERER_OPERATIONS_LISTENADDRESS=0.0.0.0:8445  # operation RESTful API
+          - ORDERER_METRICS_PROVIDER=prometheus  # prometheus will pull metrics from orderer via /metrics RESTful API
+          - ORDERER_OPERATIONS_TLS_ENABLED=false
+          - ORDERER_OPERATIONS_TLS_PRIVATEKEY=/var/hyperledger/tls/server.key
+          - ORDERER_OPERATIONS_TLS_CERTIFICATE=/var/hyperledger/tls/server.crt
+          - ORDERER_OPERATIONS_TLS_CLIENTROOTCAS=[/var/hyperledger/tls/ca.crt]
+          - ORDERER_OPERATIONS_TLS_CLIENTAUTHREQUIRED=false
         volumes:
             - /var/mynetwork/certs/crypto-config/ordererOrganizations/example.com/users:/var/hyperledger/users
             - /var/mynetwork/certs/crypto-config/ordererOrganizations/example.com/orderers/orderer3.example.com/msp:/var/hyperledger/msp
@@ -48,6 +55,7 @@ services:
             - /var/mynetwork/certs/channel-artifacts/:/var/hyperledger/channel-artifacts
         ports:
           - 9050:7050
+          - 8445:8445
         networks:
           hlf_multi_host_network:
             aliases:
