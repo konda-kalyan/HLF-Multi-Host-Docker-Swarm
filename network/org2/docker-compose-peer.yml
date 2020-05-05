@@ -51,6 +51,9 @@ services:
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb0_org2:5984
       - CORE_CHAINCODE_LOGGING_LEVEL=INFO
       - CORE_CHAINCODE_LOGGING_SHIM=INFO
+      - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9445  # operation RESTful API
+      - CORE_METRICS_PROVIDER=prometheus  # prometheus will pull metrics from orderer via /metrics RESTful API
+      - CORE_OPERATIONS_TLS_ENABLED=false
     volumes:
       - /var/run/:/host/var/run/
       # - $GOPATH/src/github.com/hyperledger/fabric/:/opt/gopath/src/github.com/hyperledger/fabric/
@@ -70,7 +73,7 @@ services:
     ports:
       - 9051:7051
       - 9053:7053
-      
+      - 9445:9445
   peer1_org2:
     deploy:
       replicas: 1
@@ -114,6 +117,9 @@ services:
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb1_org2:5984
       - CORE_CHAINCODE_LOGGING_LEVEL=INFO
       - CORE_CHAINCODE_LOGGING_SHIM=INFO
+      - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9446  # operation RESTful API
+      - CORE_METRICS_PROVIDER=prometheus  # prometheus will pull metrics from orderer via /metrics RESTful API
+      - CORE_OPERATIONS_TLS_ENABLED=false
     volumes:
       - /var/run/:/host/var/run/
       # - $GOPATH/src/github.com/hyperledger/fabric/:/opt/gopath/src/github.com/hyperledger/fabric/
@@ -129,6 +135,7 @@ services:
     ports:
       - 10051:7051
       - 10053:7053
+      - 9446:9446
     networks:
       hlf_multi_host_network:
         aliases:

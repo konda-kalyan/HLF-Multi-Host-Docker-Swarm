@@ -8,11 +8,13 @@ Network topology and different components:
 
 Used ‘Docker Swarm’ as container orchestration tool.
 
+IMPORTANT NOTE: This example sets up network on AWS environment. If you are using non-AWS envi then you need to remove AWS references in .env file and docker compose files, and then configure cloud/local settings accordingly
+
 Follow 'HLF_Multi_Node_Network_Setup_Using_Docker_Swarm.docx' document to setup HLF network.
 
 Refer 'Adding_new_Organization_dynamically.docx" to add new Organization dynamically to existing running network. Please note that 'Adding new Org is working fine almost upto 95%. There may be small improments/corrections are required'
 
-IMPORTANT NOTE: This example sets up network on AWS environment. If you are using non-AWS envi then you need to remove AWS references in .env file and docker compose files, and then configure cloud/local settings accordingly
+Refer 'Hyperledger_Explorer_Setup.docx' to setup Hyperledger Explorer for this network
 
 
 Queries - Contact at 'konda.kalyan@gmail.com'
