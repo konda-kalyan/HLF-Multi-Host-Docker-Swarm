@@ -54,6 +54,7 @@ services:
       - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9445  # operation RESTful API
       - CORE_METRICS_PROVIDER=prometheus  # prometheus will pull metrics from orderer via /metrics RESTful API
       - CORE_OPERATIONS_TLS_ENABLED=false
+      - CORE_PEER_EVENTS_ADDRESS=0.0.0.0:7053
     volumes:
       - /var/run/:/host/var/run/
       # - $GOPATH/src/github.com/hyperledger/fabric/:/opt/gopath/src/github.com/hyperledger/fabric/
@@ -120,6 +121,7 @@ services:
       - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9446  # operation RESTful API
       - CORE_METRICS_PROVIDER=prometheus  # prometheus will pull metrics from orderer via /metrics RESTful API
       - CORE_OPERATIONS_TLS_ENABLED=false
+      - CORE_PEER_EVENTS_ADDRESS=0.0.0.0:7053
     volumes:
       - /var/run/:/host/var/run/
       # - $GOPATH/src/github.com/hyperledger/fabric/:/opt/gopath/src/github.com/hyperledger/fabric/

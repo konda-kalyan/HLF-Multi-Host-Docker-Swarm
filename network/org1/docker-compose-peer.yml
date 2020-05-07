@@ -58,6 +58,7 @@ services:
             - CORE_OPERATIONS_TLS_CERTIFICATE=/var/hyperledger/tls/server.crt
             - CORE_OPERATIONS_TLS_CLIENTROOTCAS=[/var/hyperledger/tls/ca.crt]
             - CORE_OPERATIONS_TLS_CLIENTAUTHREQUIRED=false
+            - CORE_PEER_EVENTS_ADDRESS=0.0.0.0:7053
         volumes:
             - /var/run/:/host/var/run/
             - /var/mynetwork/certs/crypto-config/peerOrganizations/org1.example.com/peers/peer0.org1.example.com/msp:/var/hyperledger/msp
@@ -123,6 +124,7 @@ services:
             - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9444  # operation RESTful API
             - CORE_METRICS_PROVIDER=prometheus  # prometheus will pull metrics from orderer via /metrics RESTful API
             - CORE_OPERATIONS_TLS_ENABLED=false
+            - CORE_PEER_EVENTS_ADDRESS=0.0.0.0:7053
         volumes:
             - /var/run/:/host/var/run/
             # - $GOPATH/src/github.com/hyperledger/fabric/:/opt/gopath/src/github.com/hyperledger/fabric/
