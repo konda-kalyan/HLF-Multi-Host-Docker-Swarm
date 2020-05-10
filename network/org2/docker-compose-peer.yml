@@ -45,7 +45,7 @@ services:
       - CORE_PEER_ID=peer0.org2.example.com
       - CORE_PEER_ADDRESS=peer0.org2.example.com:7051
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.org2.example.com:7051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org2.example.com:10051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer1.org2.example.com:7051
       - CORE_PEER_LOCALMSPID=Org2MSP
       - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb0_org2:5984
@@ -54,6 +54,7 @@ services:
       - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9445  # operation RESTful API
       - CORE_METRICS_PROVIDER=prometheus  # prometheus will pull metrics from orderer via /metrics RESTful API
       - CORE_OPERATIONS_TLS_ENABLED=false
+      - CORE_PEER_EVENTS_ADDRESS=0.0.0.0:7053
     volumes:
       - /var/run/:/host/var/run/
       # - $GOPATH/src/github.com/hyperledger/fabric/:/opt/gopath/src/github.com/hyperledger/fabric/
@@ -74,6 +75,7 @@ services:
       - 9051:7051
       - 9053:7053
       - 9445:9445
+
   peer1_org2:
     deploy:
       replicas: 1
@@ -111,7 +113,7 @@ services:
       - CORE_PEER_ID=peer1.org2.example.com
       - CORE_PEER_ADDRESS=peer1.org2.example.com:7051
       - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.org2.example.com:7051
-      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org2.example.com:9051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.org2.example.com:7051
       - CORE_PEER_LOCALMSPID=Org2MSP
       - CORE_LEDGER_STATE_STATEDATABASE=CouchDB
       - CORE_LEDGER_STATE_COUCHDBCONFIG_COUCHDBADDRESS=couchdb1_org2:5984
@@ -120,6 +122,7 @@ services:
       - CORE_OPERATIONS_LISTENADDRESS=0.0.0.0:9446  # operation RESTful API
       - CORE_METRICS_PROVIDER=prometheus  # prometheus will pull metrics from orderer via /metrics RESTful API
       - CORE_OPERATIONS_TLS_ENABLED=false
+      - CORE_PEER_EVENTS_ADDRESS=0.0.0.0:7053
     volumes:
       - /var/run/:/host/var/run/
       # - $GOPATH/src/github.com/hyperledger/fabric/:/opt/gopath/src/github.com/hyperledger/fabric/
